@@ -6,7 +6,7 @@ import Styles from "./style";
 import bg from "../../assets/bg_config.png"
 
 export default function ConfigAppearance(){
-    const { main_color, set_main_color} = useState("");
+    const [ main_color, set_main_color ] = useState("");
     
     return(
         <View style={Styles.container}>
@@ -14,14 +14,14 @@ export default function ConfigAppearance(){
                 <View style={Styles.info_box}>
                     <Text style={Styles.title_text}>Configuração de Aparência</Text>
                     <View style={Styles.input_grid}>
-                        <View style={{ flex: 2, marginRight: 10, alignItems: "flex-start"}}>
+                        <View style={{ flex: 2 }}>
                             <Text style={Styles.input_label}>Cor Principal <Text style={ {color: "#D00"} }>*</Text></Text>
                             <TextInput
                                 style={Styles.input_area}
                                 placeholder={"Ex:  oranged"}
                                 placeholderTextColor={"rgba(160, 159, 159, 0.8)"}
                                 onChangeText={set_main_color}
-                                />
+                            />
                         </View>
                         <View style={{ flex: 1 }}>
                             
