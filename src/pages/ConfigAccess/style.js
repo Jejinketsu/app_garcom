@@ -19,11 +19,16 @@ export default StyleSheet.create({
         height: "80%",
         width: "80%",
         backgroundColor: 'rgba(89, 25, 2, 0.8)',
-        alignItems: "center",
-        justifyContent: "space-between",
         borderRadius: 15,
     },
+    scroll_style: { 
+        height: "100%",
+        width: "100%", 
+        alignItems: "center", 
+        justifyContent: "space-between",
+    },
     title_text: {
+        marginVertical: 10,
         fontSize: 30,
         fontWeight: "bold",
         color: "#BF815E",

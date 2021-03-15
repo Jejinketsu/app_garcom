@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, ImageBackground, SafeAreaView, ScrollView } from "react-native";
 import CheckBox from '@react-native-community/checkbox'
 
 import Styles from "./style";
@@ -13,9 +13,15 @@ export default function ConfigAccess(){
     const [isIzettle, setIzettle] = useState(false);
     
     return(
-        <View style={Styles.container}>
+        <SafeAreaView style={Styles.container}>
             <ImageBackground source={bg} style={Styles.BGconfig}>
                 <View style={Styles.info_box}>
+                    <ScrollView 
+                        overScrollMode={"always"}
+                        persistentScrollbar={true}
+                        contentContainerStyle={Styles.scroll_style}
+                    >
+                    
                     <Text style={Styles.title_text}>Configuração de Acesso</Text>
                     <View style={Styles.input_grid}>
                         <View style={{ flex: 2, marginRight: 10 }}>
@@ -74,9 +80,11 @@ export default function ConfigAccess(){
                     >
                         <Text style={Styles.text_button}>Avançar</Text>
                     </TouchableOpacity>
+
+                    </ScrollView>
                 </View>
             </ImageBackground>
-        </View>
+        </SafeAreaView>
     );
 
 }
