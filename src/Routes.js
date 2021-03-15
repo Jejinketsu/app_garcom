@@ -14,7 +14,7 @@ const AppStack = createStackNavigator();
 export default function Routes() {
 
     return(
-        <ConfigAccess />
+        <ConfigAppearance />
         /* <NavigationContainer>
             <AppStack.Navigator screenOptions={{ headerShown: false }}>
                 <AppStack.Screen name="ConfigAccess" component={ConfigAccess} />
