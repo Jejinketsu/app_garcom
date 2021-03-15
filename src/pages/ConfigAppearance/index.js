@@ -1,12 +1,25 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { View, Text, ImageBackground, TextInput, TouchableOpacity } from "react-native";
 
 import Styles from "./style";
 import bg from "../../assets/bg_config.png"
 
 export default function ConfigAppearance(){
+
+    const navigation = useNavigation();
+    const route = useRoute();
+
     const [ main_color, set_main_color ] = useState("");
+
+    function navigateToInit(){
+        navigation.navigate("InitMenu", {})
+    }
+
+    function navigateBack(){
+        navigation.goBack();
+    }
     
     return(
         <View style={Styles.container}>
@@ -32,14 +45,14 @@ export default function ConfigAppearance(){
                         
                         <TouchableOpacity
                             style={Styles.button}
-                            onPress={() => {return null}}
+                            onPress={() => {navigateBack()}}
                             >
                             <Text style={Styles.text_button}>Voltar</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
                             style={Styles.button}
-                            onPress={() => {return null}}
+                            onPress={() => {navigateToInit()}}
                             >
                             <Text style={Styles.text_button}>Avançar</Text>
                         </TouchableOpacity>

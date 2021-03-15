@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity, ImageBackground, SafeAreaView, ScrollView } from "react-native";
 import CheckBox from '@react-native-community/checkbox'
 
@@ -11,11 +12,17 @@ export default function ConfigAccess(){
     const [ID, setID] = useState("");
     const [secret, setSecret] = useState("");
     const [isIzettle, setIzettle] = useState(false);
+
+    const navigation = useNavigation();
+
+    function navigateToAppearance(){
+        navigation.navigate("ConfigAppearance", {});
+    }
     
     return(
-        <SafeAreaView style={Styles.container}>
+        <View style={Styles.container}>
             <ImageBackground source={bg} style={Styles.BGconfig}>
-                <View style={Styles.info_box}>
+                <SafeAreaView style={Styles.info_box}>
                     <ScrollView 
                         overScrollMode={"always"}
                         persistentScrollbar={true}
@@ -76,15 +83,15 @@ export default function ConfigAccess(){
                     </View>
                     <TouchableOpacity
                         style={Styles.button}
-                        onPress={() => {return null}}
+                        onPress={() => {navigateToAppearance()}}
                     >
                         <Text style={Styles.text_button}>Avançar</Text>
                     </TouchableOpacity>
 
                     </ScrollView>
-                </View>
+                </SafeAreaView>
             </ImageBackground>
-        </SafeAreaView>
+        </View>
     );
 
 }

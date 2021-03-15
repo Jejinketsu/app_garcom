@@ -1,4 +1,5 @@
 import React from "react";
+import 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack"
 
@@ -14,8 +15,7 @@ const AppStack = createStackNavigator();
 export default function Routes() {
 
     return(
-        <InitMenu />
-        /* <NavigationContainer>
+        <NavigationContainer>
             <AppStack.Navigator screenOptions={{ headerShown: false }}>
                 <AppStack.Screen name="ConfigAccess" component={ConfigAccess} />
                 <AppStack.Screen name="ConfigAppearance" component={ConfigAppearance} />
@@ -23,7 +23,7 @@ export default function Routes() {
                 <AppStack.Screen name="MainMenu" component={MainMenu} />
                 <AppStack.Screen name="PayPage" component={PayPage} />
             </AppStack.Navigator>
-        </NavigationContainer> */
+        </NavigationContainer>
     )
 
 }
