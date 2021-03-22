@@ -1,10 +1,18 @@
 import React from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 
 import Styles from "./style"
 import bg from "../../assets/bg_config.png"
 
 export default function InitMenu(){
+
+    const navigation = useNavigation();
+    const route = useRoute();
+
+    function navigateToMain(){
+        navigation.navigate("MainMenu", {})
+    }
     
     return(
         <View style={Styles.container}>
@@ -16,7 +24,7 @@ export default function InitMenu(){
                     
                     <TouchableOpacity
                         style={Styles.button}
-                        onPress={() => {return null}}
+                        onPress={() => {navigateToMain()}}
                         >
                         <Text style={Styles.text_button}>Iniciar Vendas</Text>
                     </TouchableOpacity>
