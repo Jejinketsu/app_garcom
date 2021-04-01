@@ -6,9 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack"
 import ConfigAccess from "./pages/ConfigAccess";
 import ConfigAppearance from "./pages/ConfigAppearance";
 import InitMenu from "./pages/InitMenu";
-import MainMenu from "./pages/MainMenu";
+import MainMenu from "./pages/MainMenu/drawerNavigation";
 import PayPage from "./pages/PayPage";
-import { View, Text } from "react-native";
 
 const AppStack = createStackNavigator();
 

@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from "./style";
 
-export default function MainMenu(){
+export default function MainMenu(props){
 
     const [products, setProducts] = useState([
         {
@@ -13,14 +13,14 @@ export default function MainMenu(){
             img_url: "https://claudia.abril.com.br/wp-content/uploads/2020/02/receita-estrogonofe-de-carne.jpg",
             name: "Estrogonorfe de Carne",
             value: 18.9,
-            description: "ad astra abyssosque"
+            description: "ad astra abyssosque Mussum ipsum, calcildes vidis litrus abertus. Quem num gosta di mim que vá caçá sua turmis! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit."
         },
         {
             id: "2",
             img_url: "https://i0.wp.com/viciados.net/wp-content/uploads/2020/10/bc2.jpg?fit=1201%2C900&ssl=1",
             name: "Comida de Emergência",
             value: 4.2,
-            description: "ad astra abyssosque"
+            description: "ad astra abyssosque Mussum ipsum, calcildes vidis litrus abertus. Quem num gosta di mim que vá caçá sua turmis! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit."
         },
         {
             id: "3",
@@ -31,6 +31,12 @@ export default function MainMenu(){
         },
     ]);
     
+    function openSideMenu(sideType) {
+        props.navigation.setParams(sideType);
+
+        props.navigation.openDrawer();
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.section_list}>
@@ -56,7 +62,10 @@ export default function MainMenu(){
                                     <Text style={styles.product_value}>R$ {(Math.round((product.value + Number.EPSILON) * 100)/ 100).toFixed(2)}</Text>
                                     <TouchableOpacity
                                         style={styles.see_more_button}
-                                        onPress={() => {return null}}
+                                        onPress={() => openSideMenu({
+                                            side_menu: "detail",
+                                            info: product,
+                                        })}
                                     >
                                         <Text style={styles.see_more_text}>Veja Mais</Text>
                                     </TouchableOpacity>
@@ -67,7 +76,9 @@ export default function MainMenu(){
                     <View style={styles.button_bg}>
                         <TouchableOpacity
                             style={styles.button}
-                            onPress={() => {return null}}
+                            onPress={() => openSideMenu({
+                                side_menu: "cart",
+                            })}
                         >
                             <Icon name="shopping-cart" size={30} color="#BF815E" />
                         </TouchableOpacity>
