@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-import Cart from "./sideMenuCart";
+import Cart from "./SideMenuCart/sideMenuCart";
 import Detail from "./SideMenuDetails/sideMenuDetails";
 
 export default function SideMenuRoot(props){
