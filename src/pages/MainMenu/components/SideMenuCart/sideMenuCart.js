@@ -4,34 +4,20 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from "./styles";
 
-export default function sideMenuCart(list){
-    
-    const [itens_cont, setItens_cont] = useState(3);
-    const [value, setValue] = useState(56.7);
+export default function sideMenuCart(itens){
 
-    const [cart, setCart] = useState([
-        {
-            id: "1",
-            name: "Estrogonorfe de Carne",
-            value: 18.90,
-            quantity: 1,
-            composition: "Carne ao molho, Macarrão, Arroz",
-        },
-        {
-            id: "2",
-            name: "Estrogonorfe de Carne",
-            value: 18.90,
-            quantity: 1,
-            composition: "Carne ao molho, Macarrão, Arroz",
-        },
-        {
-            id: "3",
-            name: "Estrogonorfe de Carne",
-            value: 18.90,
-            quantity: 1,
-            composition: "Carne ao molho, Macarrão, Arroz",
+    const [cart, setCart] = useState(itens.params);
+
+    const [itens_cont, setItens_cont] = useState(cart.length);
+    const [value, setValue] = useState(total_cart(cart));
+
+    function total_cart(cart){
+        let value = 0.0;
+        for (element of cart){
+            value += element.value * element.quantity;
         }
-    ]);
+        return value;
+    }
 
     function formatCurrencyValue(value){
         return (Math.round((value + Number.EPSILON) * 100)/ 100).toFixed(2)
@@ -40,7 +26,7 @@ export default function sideMenuCart(list){
     return(
         <View style={styles.container}>
             <View style={styles.resume_box}>
-                <Text>
+                <Text style={styles.top_text}>
                     Meu Pedido - {itens_cont} Produto(s)
                 </Text>
                 <View style={styles.line} />
@@ -49,7 +35,7 @@ export default function sideMenuCart(list){
                     style={styles.cart_list}
                     data={cart}
                     keyExtractor={item => item.id}
-                    showsVerticalScrollIndicator={false}
+                    showsVerticalScrollIndicator={true}
                     renderItem={({ item: item }) => (
                         <View style={styles.item_box}>
                             <Text>
@@ -57,14 +43,28 @@ export default function sideMenuCart(list){
                                 <Text style={styles.name_text}>{item.name} - </Text> 
                                 <Text style={styles.value_text}>R$ {formatCurrencyValue(item.value)}</Text>
                             </Text>
-                            <View style={{ flexDirection: "row" }}>
-                                <View>
-                                    <Text style={styles.composition_text}>{item.composition}</Text>
-                                    <Text style={styles.total_text}>R$ {formatCurrencyValue(item.quantity * item.value)}</Text>
+                            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                <View style={styles.composition_box}>
+                                        <Text style={styles.composition_text}>{item.composition}</Text>
+                                    <Text>
+                                        <Text style={styles.total_text}>Total: </Text>
+                                        <Text style={styles.total_value_text}>R$ {formatCurrencyValue(item.quantity * item.value)}</Text>
+                                    </Text>
                                 </View>
-                                <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-                                    <Icon name={"edit"} size={30} color={"#000"}/>
-                                    <Icon name={"trash"} size={30} color={"#000"}/>
+                                <View style={styles.control_box}>
+                                    
+                                    <TouchableOpacity
+                                        onPress={() => {}}
+                                    >
+                                        <Icon name={"edit"} size={40} color={"#000"}/>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity
+                                        onPress={() => {}}
+                                    >
+                                        <Icon name={"trash"} size={40} color={"#000"}/>
+                                    </TouchableOpacity>
+
                                 </View>
                             </View>
                         </View>
@@ -73,8 +73,8 @@ export default function sideMenuCart(list){
             </View>
 
             <View style={styles.total_box}>
-                <Text style={styles.total_text}>Total:</Text>
-                <Text style={styles.value_text}>R$ {formatCurrencyValue(value)}</Text>
+                <Text style={styles.final_total_text}>Total:</Text>
+                <Text style={styles.final_value_text}>R$ {formatCurrencyValue(value)}</Text>
                 <TouchableOpacity
                     style={styles.pay_buttom}
                     onPress={() => {}}
